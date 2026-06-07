@@ -4,18 +4,30 @@ Publiczne zasoby banerow Eskapizmu serwowane przez GitHub + jsDelivr.
 
 ## Zasada osadzania u afiliantow
 
-Afiliantowi przekazujemy iframe do pliku z CDN, a nie statycznie skopiowany HTML banera. Dzieki temu zmiana w tym repo aktualizuje baner na stronie afilianta bez ponownego wdrazania po jego stronie.
+Afiliantowi przekazujemy embed przez `<script>`, nigdy przez iframe i nigdy jako statycznie skopiowany HTML banera.
+
+Script pobiera aktualny plik banera z tego repo i renderuje go inline na stronie afilianta. Dzieki temu zmiana w repo aktualizuje baner bez proszenia afilianta o zmiane kodu u siebie. Klikniecie CTA jest zwyklym linkiem i przenosi uzytkownika na `eskapizm.com` z `ref` oraz UTM.
 
 Przyklad:
 
 ```html
-<iframe
-  src="https://cdn.jsdelivr.net/gh/mioduszewsky/eskapizm-assets@main/Baner_Tajlandia.html"
-  style="width:100%;border:0;min-height:560px;"
-  loading="lazy"
-  title="Eskapizm - plan podrozy po Tajlandii"
-></iframe>
+<script
+  async
+  src="https://cdn.jsdelivr.net/gh/mioduszewsky/eskapizm-assets@main/embed.js"
+  data-banner="Baner_Tajlandia.html"
+></script>
 ```
+
+Dostepne wartosci `data-banner`:
+
+- `Baner_Tajlandia.html`
+- `Baner_Wietnam.html`
+- `Baner_Filipiny.html`
+- `Baner_Indonezja.html`
+- `tajlandia.html`
+- `wietnam.html`
+- `filipiny.html`
+- `indonezja.html`
 
 ## Linki afiliacyjne
 
@@ -40,6 +52,7 @@ https://eskapizm.com/tajlandia?ref=aff_5d9160048a15&utm_source=bartekwpodrozy&ut
 Po zmianie pliku na branchu `main` jsDelivr odswieza CDN z opoznieniem. Jesli zmiana ma wejsc od razu, mozna wyczyscic cache:
 
 ```text
+https://purge.jsdelivr.net/gh/mioduszewsky/eskapizm-assets@main/embed.js
 https://purge.jsdelivr.net/gh/mioduszewsky/eskapizm-assets@main/Baner_Tajlandia.html
 ```
 
