@@ -23,12 +23,10 @@
    przycisk nie ucieka spod kursora i nie migocze */
 .esk-bn__cta {
   position: absolute;
-  left: 59.5829%;
-  top: 84.3292%;
-  width: 37.2604%;
   display: block;
   border-radius: 999px;
 }
+.esk-bn__cta img { width: 100%; height: auto; display: block; border: 0; }
 
 /* warstwa, która się rusza */
 .esk-bn__cta-in {
@@ -38,7 +36,6 @@
   transition: transform 0.22s ease, filter 0.22s ease;
   will-change: transform;
 }
-.esk-bn__cta img { width: 100%; height: auto; display: block; border: 0; }
 
 /* wariant żółty leży dokładnie na białym i wchodzi płynnie na hover */
 .esk-bn__cta-hover {
@@ -59,6 +56,29 @@
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.30));
 }
 
+/* ——— desktop ——— */
+.esk-bn__cta--d {
+  left: 59.5829%;
+  top: 84.3292%;
+  width: 37.2604%;
+}
+.esk-bn__cta--m { display: none; }
+
+/* ——— mobilka: osobna kreacja pionowa, bo baner 2:1 zwężony do szerokości
+   telefonu daje nieczytelnie małą typografię ——— */
+@media (max-width: 640px) {
+  .esk-bn__cta--d { display: none; }
+  .esk-bn__cta--m {
+    display: block;
+    left: 15.1852%;
+    top: 88.0574%;
+    width: 69.5370%;
+    filter: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.26));
+    transition: transform 0.14s ease;
+  }
+  .esk-bn__cta--m:active { transform: scale(0.98); }
+}
+
 @media (hover: none) {
   .esk-bn__cta-in, .esk-bn__cta-hover { transition: none; }
 }
@@ -66,15 +86,24 @@
 </head>
 <body>
 <a class="esk-bn" target="_blank" rel="noopener" href="https://eskapizm.com/wietnam">
-  <img class="esk-bn__img"
-       src="https://mioduszewsky.github.io/eskapizm-assets/baner-wietnam.png"
-       alt="Twój plan wyjazdu do Wietnamu — eskapizm">
-  <span class="esk-bn__cta" aria-hidden="true">
+  <picture>
+    <source media="(max-width: 640px)"
+            srcset="https://mioduszewsky.github.io/eskapizm-assets/baner-wietnam-mobile.jpg">
+    <img class="esk-bn__img"
+         src="https://mioduszewsky.github.io/eskapizm-assets/baner-wietnam.jpg"
+         alt="Twój plan wyjazdu do Wietnamu — eskapizm">
+  </picture>
+
+  <span class="esk-bn__cta esk-bn__cta--d" aria-hidden="true">
     <span class="esk-bn__cta-in">
       <img src="https://mioduszewsky.github.io/eskapizm-assets/cta-wietnam.png" alt="">
       <img class="esk-bn__cta-hover"
            src="https://mioduszewsky.github.io/eskapizm-assets/cta-wietnam-hover.png" alt="">
     </span>
+  </span>
+
+  <span class="esk-bn__cta esk-bn__cta--m" aria-hidden="true">
+    <img src="https://mioduszewsky.github.io/eskapizm-assets/cta-wietnam-mobile.png" alt="">
   </span>
 </a>
 </body>
