@@ -37,7 +37,7 @@
   will-change: transform;
 }
 
-/* wariant żółty leży dokładnie na białym i wchodzi płynnie na hover */
+/* wariant żółty leży dokładnie na białym */
 .esk-bn__cta-hover {
   position: absolute;
   inset: 0;
@@ -45,13 +45,17 @@
   transition: opacity 0.22s ease;
 }
 
+/* żółty na hover samego przycisku (desktop) oraz na wciśnięciu — to drugie
+   obsługuje dotyk, gdzie hover nie istnieje. :active bierzemy z linku, bo
+   iOS Safari nie nadaje go zagnieżdżonym elementom niebędącym linkiem. */
+.esk-bn__cta:hover .esk-bn__cta-hover,
+.esk-bn:active .esk-bn__cta-hover { opacity: 1; }
+
 .esk-bn__cta:hover .esk-bn__cta-in {
   transform: translateY(-3px);
   filter: drop-shadow(0 11px 20px rgba(0, 0, 0, 0.34));
 }
-.esk-bn__cta:hover .esk-bn__cta-hover { opacity: 1; }
-
-.esk-bn__cta:active .esk-bn__cta-in {
+.esk-bn:active .esk-bn__cta-in {
   transform: translateY(-1px);
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.30));
 }
@@ -81,37 +85,29 @@
     left: 11.2037%;
     top: 88.6647%;
     width: 77.5926%;
-    filter: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.26));
-    transition: transform 0.14s ease;
   }
-  .esk-bn__cta--m:active { transform: scale(0.98); }
-}
-
-@media (hover: none) {
-  .esk-bn__cta-in, .esk-bn__cta-hover { transition: none; }
 }
 </style>
 </head>
 <body>
 <a class="esk-bn" target="_blank" rel="noopener" href="https://eskapizm.com/indonezja">
   <picture>
-    <source media="(max-width: 640px)"
-            srcset="https://mioduszewsky.github.io/eskapizm-assets/baner-indonezja-mobile.jpg">
-    <img class="esk-bn__img"
-         src="https://mioduszewsky.github.io/eskapizm-assets/baner-indonezja.jpg"
-         alt="Twój plan wyjazdu do Indonezji — eskapizm">
+    <source media="(max-width: 640px)" srcset="https://mioduszewsky.github.io/eskapizm-assets/baner-indonezja-mobile.jpg">
+    <img class="esk-bn__img" src="https://mioduszewsky.github.io/eskapizm-assets/baner-indonezja.jpg" alt="Twój plan wyjazdu do Indonezji — eskapizm">
   </picture>
 
   <span class="esk-bn__cta esk-bn__cta--d" aria-hidden="true">
     <span class="esk-bn__cta-in">
       <img src="https://mioduszewsky.github.io/eskapizm-assets/cta-indonezja.png" alt="">
-      <img class="esk-bn__cta-hover"
-           src="https://mioduszewsky.github.io/eskapizm-assets/cta-indonezja-hover.png" alt="">
+      <img class="esk-bn__cta-hover" src="https://mioduszewsky.github.io/eskapizm-assets/cta-indonezja-hover.png" alt="">
     </span>
   </span>
 
   <span class="esk-bn__cta esk-bn__cta--m" aria-hidden="true">
-    <img src="https://mioduszewsky.github.io/eskapizm-assets/cta-indonezja-mobile.png" alt="">
+    <span class="esk-bn__cta-in">
+      <img src="https://mioduszewsky.github.io/eskapizm-assets/cta-indonezja-mobile.png" alt="">
+      <img class="esk-bn__cta-hover" src="https://mioduszewsky.github.io/eskapizm-assets/cta-indonezja-mobile-hover.png" alt="">
+    </span>
   </span>
 </a>
 </body>
